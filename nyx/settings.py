@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-4n!1rj=c%ngm5!41cglcm(j(^e(#y_2a!4kc9e^i1w0#7_s)&a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1"]
 #Ato ny DNS no atao
 
 
@@ -85,12 +85,12 @@ WSGI_APPLICATION = 'nyx.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', #type de base de données
-        'NAME': BASE_DIR / 'db.sqlite3',
-        # 'USER' : ,
-        # 'PASSWORD' : ,
-        # 'HOST' : ,
-        # 'PORT' : ,
+        'ENGINE': 'django.db.backends.postgresql', #type de base de données
+        'NAME': 'dbsoatrans',
+        'USER' : 'zexhior',
+        'PASSWORD' : 'SOUVENIR@123perdu',
+        'HOST' : 'localhost',
+        'PORT' : '5432',
     }
 }
 
