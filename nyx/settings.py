@@ -9,9 +9,10 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import datetime
+import os.path
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,8 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #rest_framework
     'corsheaders',
     'rest_framework',
+    'rest_framework_simplejwt',
     'api.apps.ApiConfig'
 ]
 
@@ -86,9 +89,9 @@ WSGI_APPLICATION = 'nyx.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql', #type de base de données
-        'NAME': 'dbsoatrans',
-        'USER' : 'zexhior',
-        'PASSWORD' : 'SOUVENIR@123perdu',
+        'NAME': 'soatrans',
+        'USER' : 'yello22',
+        'PASSWORD' : 'beta',
         'HOST' : 'localhost',
         'PORT' : '5432',
     }
@@ -138,11 +141,33 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#
+'''
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES':(
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly'
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES':(
+        'rest_framework_simplejwt.authentication.JWTAuthentication'
+    ),
+}
+'''
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=20),
+    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=1),
+    'ROTATE_REFRESH_TOKEN': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'UPDATE_LAST_LOGIN': False,
+}
+
 
 CORS_ORIGIN_ALLOW_ALL = False
 
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
 )
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+AUTH_USER_MODEL = 'api.Utilisateur'
 
