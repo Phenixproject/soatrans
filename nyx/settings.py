@@ -89,14 +89,13 @@ WSGI_APPLICATION = 'nyx.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql', #type de base de données
-        'NAME': 'soatrans',
-        'USER' : 'yello22',
-        'PASSWORD' : 'beta',
+        'NAME': 'dbsoatrans',
+        'USER' : 'zexhior',
+        'PASSWORD' : 'SOUVENIR@123perdu',
         'HOST' : 'localhost',
         'PORT' : '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

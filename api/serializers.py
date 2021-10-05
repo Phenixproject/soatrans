@@ -9,7 +9,7 @@ class RoleSerializer(serializers.ModelSerializer):
 class UtilisateurSerializer(serializers.ModelSerializer) :
     class Meta:
         model = Utilisateur
-        fields = ('username','name','telephone_utilisateur','statut_utilisateur','role')
+        fields = ('username','first_name','last_name','CIN','telephone_utilisateur','statut_utilisateur','role')
 
 class VoyageSerializer(serializers.ModelSerializer) :
     class Meta:
@@ -26,3 +26,8 @@ class ReservationSerializer(serializers.ModelSerializer) :
         model = Reservation
         fields = ('montant_paye', 'avance_paye', 'position_place', 'ville_depart',
                   'ville_destination', 'utilisateur', 'voyage')
+
+class HoraireSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Horaire
+        fields = ('heure',)

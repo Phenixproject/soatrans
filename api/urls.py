@@ -2,7 +2,6 @@ from django.conf.urls import url
 from . import views
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-
 urlpatterns = [
     url(r'^roles/$', views.all_role),
     url(r'^roles/(?P<pk>[0-9]+)$', views.single_role),
