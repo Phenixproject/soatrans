@@ -43,14 +43,14 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt',
-    'api.apps.ApiConfig'
+    'api.apps.ApiConfig',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -88,12 +88,16 @@ WSGI_APPLICATION = 'nyx.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql', #type de base de données
-        'NAME': 'dbsoatrans',
-        'USER' : 'zexhior',
-        'PASSWORD' : 'SOUVENIR@123perdu',
-        'HOST' : 'localhost',
-        'PORT' : '5432',
+        #'''
+        #'ENGINE': 'django.db.backends.postgresql', #type de base de données
+        #'NAME': 'dbsoatrans',
+        #'USER' : 'zexhior',
+        #'PASSWORD' : 'SOUVENIR@123perdu',
+        #'HOST' : 'localhost',
+        #'PORT' : '5432',
+        #'''
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db2.sqlite3'
     }
 }
 
@@ -163,7 +167,7 @@ SIMPLE_JWT = {
 CORS_ORIGIN_ALLOW_ALL = False
 
 CORS_ORIGIN_WHITELIST = (
-    'http://localhost:3000',
+    'http://localhost:4200',
 )
 
 MEDIA_URL = '/media/'

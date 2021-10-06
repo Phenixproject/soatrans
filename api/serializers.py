@@ -10,11 +10,7 @@ class UtilisateurSerializer(serializers.ModelSerializer) :
     class Meta:
         model = Utilisateur
         fields = ('username','first_name','last_name','CIN','telephone_utilisateur','statut_utilisateur','role')
-
-class VoyageSerializer(serializers.ModelSerializer) :
-    class Meta:
-        model = Voyage
-        fields = ('libelle_voyage','frais_voyage','nombre_place')
+        extra_kwargs = {'password': {'write_only': True}}
 
 class VoitureSerializer(serializers.ModelSerializer) :
     class Meta:
@@ -24,10 +20,24 @@ class VoitureSerializer(serializers.ModelSerializer) :
 class ReservationSerializer(serializers.ModelSerializer) :
     class Meta:
         model = Reservation
-        fields = ('montant_paye', 'avance_paye', 'position_place', 'ville_depart',
-                  'ville_destination', 'utilisateur', 'voyage')
+        fields = ('montant_paye', 'avance_paye', 'position_place', 'utilisateur')
 
 class HoraireSerializer(serializers.ModelSerializer):
     class Meta:
         model = Horaire
-        fields = ('heure',)
+        fields = ('id','heure',)
+
+class DestinationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Destination
+        fields =('id','depart','arrive')
+
+class ClasseVoitureSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ClasseVoiture
+        fields = ('classe',)
+
+class HoraireClasseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HoraireClasse
+        fields = ('horaire', 'classe', 'destination',)

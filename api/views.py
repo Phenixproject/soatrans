@@ -58,7 +58,7 @@ def all_utilisateur(request):
         # le Response eo ambany
         return Response(serial.data)
 
-@api_view(['GET', 'PUT'])
+@api_view(['GET', 'PUT', 'DELETE'])
 #@permission_classes((IsAuthenticated, ))
 def single_utilisateur(request,pk):
     try:
@@ -132,57 +132,6 @@ def single_role(request, pk):
             return HttpResponse({'message':"ce role n'existe pas"}, status=status.HTTP_204_NO_CONTENT)
     except:
         return HttpResponse(status=status.HTTP_404_NOT_FOUND)
-
-@api_view(['GET', 'POST'])
-#@permission_classes((IsAuthenticated, ))
-def all_voyage(request):
-    if request.method == "GET":
-        voyages = Voyage.objects.all()
-        serials = VoyageSerializer(voyages, many=True)
-        #return JsonResponse(serials.data, safe=False)
-        # avadika JsonResponse @ izay le izy rehefa vita teste
-        # ka ampifandraisina @ le front de fafana
-        # le Response eo ambany
-        return Response(serials.data)
-    elif request.method == "POST":
-        serial = VoyageSerializer(data=request.data)
-        if serial.is_valid():
-            serial.save()
-        #return JsonResponse(serial.data, safe=False)
-        # avadika JsonResponse @ izay le izy rehefa vita teste
-        # ka ampifandraisina @ le front de fafana
-        # le Response eo ambany
-        return Response(serial.data)
-
-@api_view(['GET', 'PUT'])
-#@permission_classes((IsAuthenticated, ))
-def single_voyage(request, pk):
-    try:
-        role = Voyage.objects.get(id=pk)
-        # eto le misy diso n an aro f adinony namadika an le
-        # zvtr eto ambony ito ho serializer alohan'ny manao
-        # return @ le methode get
-        if request.method == "GET":
-            #return JsonResponse(role.data, safe=False)
-            # avadika JsonResponse @ izay le izy rehefa vita teste
-            # ka ampifandraisina @ le front de fafana
-            # le Response eo ambany
-            return Response(RoleSerializer(role))
-        elif request.method == "PUT":
-            serial = VoyageSerializer(instance=role,data=request.data)
-            if serial.is_valid():
-                serial.save()
-            #return JsonResponse(serial.data, safe=False)
-            # avadika JsonResponse @ izay le izy rehefa vita teste
-            # ka ampifandraisina @ le front de fafana
-            # le Response eo ambany
-            return Response(serial.data)
-        else:
-            role.delete()
-            return HttpResponse({'message':"ce voyage n'existe pas"}, status=status.HTTP_204_NO_CONTENT)
-    except:
-        return HttpResponse(status=status.HTTP_404_NOT_FOUND)
-
 
 @api_view(['GET', 'POST'])
 #@permission_classes((IsAuthenticated, ))
@@ -332,6 +281,209 @@ def single_horaire(request, pk):
         else:
             horaire.delete()
             return HttpResponse({'message': "reservation inexistant"}, status=status.HTTP_204_NO_CONTENT)
+    except:
+        return HttpResponse(status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['GET', 'POST'])
+#@permission_classes((IsAuthenticated, ))
+def all_classevoiture(request):
+    if request.method == "GET":
+        classvoitures = ClasseVoiture.objects.all()
+        serials = ClasseVoitureSerializer(classvoitures, many=True)
+        #return JsonResponse(serials.data, safe=False)
+        # avadika JsonResponse @ izay le izy rehefa vita teste
+        # ka ampifandraisina @ le front de fafana
+        # le Response eo ambany
+        return Response(serials.data)
+    elif request.method == "POST":
+        serial = ClasseVoitureSerializer(data=request.data)
+        if serial.is_valid():
+            serial.save()
+        #return JsonResponse(serial.data, safe=False)
+        # avadika JsonResponse @ izay le izy rehefa vita teste
+        # ka ampifandraisina @ le front de fafana
+        # le Response eo ambany
+        return Response(serial.data)
+
+@api_view(['GET', 'PUT'])
+#@permission_classes((IsAuthenticated, ))
+def single_classevoiture(request, pk):
+    try:
+        classevoiture = ClasseVoiture.objects.get(id=pk)
+        # eto le misy diso n an aro f adinony namadika an le
+        # zvtr eto ambony ito ho serializer alohan'ny manao
+        # return @ le methode get
+        if request.method == "GET":
+            #return JsonResponse(role.data, safe=False)
+            # avadika JsonResponse @ izay le izy rehefa vita teste
+            # ka ampifandraisina @ le front de fafana
+            # le Response eo ambany
+            return Response(ClasseVoiture(classevoiture).data)
+        elif request.method == "PUT":
+            serial = ClasseVoitureSerializer(instance=classevoiture, data=request.data)
+            if serial.is_valid():
+                serial.save()
+            #return JsonResponse(serial.data, safe=False)
+            # avadika JsonResponse @ izay le izy rehefa vita teste
+            # ka ampifandraisina @ le front de fafana
+            # le Response eo ambany
+            return Response(serial.data)
+        else:
+            classevoiture.delete()
+            return HttpResponse({'message':"reservation inexistant"}, status=status.HTTP_204_NO_CONTENT)
+    except:
+        return HttpResponse(status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['GET', 'POST'])
+#@permission_classes((IsAuthenticated, ))
+def all_destination(request):
+    if request.method == "GET":
+        destinations = Destination.objects.all()
+        serials = DestinationSerializer(destinations, many=True)
+        #return JsonResponse(serials.data, safe=False)
+        # avadika JsonResponse @ izay le izy rehefa vita teste
+        # ka ampifandraisina @ le front de fafana
+        # le Response eo ambany
+        return Response(serials.data)
+    elif request.method == "POST":
+        serial = DestinationSerializer(data=request.data)
+        if serial.is_valid():
+            serial.save()
+            return Response(serial.data)
+        #return JsonResponse(serial.data, safe=False)
+        # avadika JsonResponse @ izay le izy rehefa vita teste
+        # ka ampifandraisina @ le front de fafana
+        # le Response eo ambany
+        return Response(serial.errors)
+
+@api_view(['GET', 'PUT'])
+#@permission_classes((IsAuthenticated, ))
+def single_destination(request, pk):
+    try:
+        destination = Destination.objects.get(id=pk)
+        # eto le misy diso n an aro f adinony namadika an le
+        # zvtr eto ambony ito ho serializer alohan'ny manao
+        # return @ le methode get
+        if request.method == "GET":
+            #return JsonResponse(role.data, safe=False)
+            # avadika JsonResponse @ izay le izy rehefa vita teste
+            # ka ampifandraisina @ le front de fafana
+            # le Response eo ambany
+            return Response(DestinationSerializer(destination).data)
+        elif request.method == "PUT":
+            serial = DestinationSerializer(instance=destination, data=request.data)
+            if serial.is_valid():
+                serial.save()
+            #return JsonResponse(serial.data, safe=False)
+            # avadika JsonResponse @ izay le izy rehefa vita teste
+            # ka ampifandraisina @ le front de fafana
+            # le Response eo ambany
+            return Response(serial.data)
+        else:
+            destination.delete()
+            return HttpResponse({'message':"reservation inexistant"}, status=status.HTTP_204_NO_CONTENT)
+    except:
+        return HttpResponse(status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['GET', 'POST'])
+#@permission_classes((IsAuthenticated, ))
+def all_horaire(request):
+    if request.method == "GET":
+        horaires = Horaire.objects.all()
+        serials = HoraireSerializer(horaires, many=True)
+        #return JsonResponse(serials.data, safe=False)
+        # avadika JsonResponse @ izay le izy rehefa vita teste
+        # ka ampifandraisina @ le front de fafana
+        # le Response eo ambany
+        return Response(serials.data)
+    elif request.method == "POST":
+        serial = HoraireSerializer(data=request.data)
+        if serial.is_valid():
+            serial.save()
+            return Response(serial.data)
+        #return JsonResponse(serial.data, safe=False)
+        # avadika JsonResponse @ izay le izy rehefa vita teste
+        # ka ampifandraisina @ le front de fafana
+        # le Response eo ambany
+        return Response(serial.errors)
+
+@api_view(['GET', 'PUT'])
+#@permission_classes((IsAuthenticated, ))
+def single_horaire(request, pk):
+    try:
+        horaire = Horaire.objects.get(id=pk)
+        # eto le misy diso n an aro f adinony namadika an le
+        # zvtr eto ambony ito ho serializer alohan'ny manao
+        # return @ le methode get
+        if request.method == "GET":
+            #return JsonResponse(role.data, safe=False)
+            # avadika JsonResponse @ izay le izy rehefa vita teste
+            # ka ampifandraisina @ le front de fafana
+            # le Response eo ambany
+            return Response(HoraireSerializer(horaire).data)
+        elif request.method == "PUT":
+            serial = HoraireSerializer(instance=horaire, data=request.data)
+            if serial.is_valid():
+                serial.save()
+            #return JsonResponse(serial.data, safe=False)
+            # avadika JsonResponse @ izay le izy rehefa vita teste
+            # ka ampifandraisina @ le front de fafana
+            # le Response eo ambany
+            return Response(serial.data)
+        else:
+            horaire.delete()
+            return HttpResponse({'message':"reservation inexistant"}, status=status.HTTP_204_NO_CONTENT)
+    except:
+        return HttpResponse(status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['GET', 'POST'])
+#@permission_classes((IsAuthenticated, ))
+def all_horaireclasse(request):
+    if request.method == "GET":
+        horaireclasses = HoraireClasse.objects.all()
+        serials = HoraireClasseSerializer(horaireclasses, many=True)
+        #return JsonResponse(serials.data, safe=False)
+        # avadika JsonResponse @ izay le izy rehefa vita teste
+        # ka ampifandraisina @ le front de fafana
+        # le Response eo ambany
+        return Response(serials.data)
+    elif request.method == "POST":
+        serial = HoraireClasseSerializer(data=request.data)
+        if serial.is_valid():
+            serial.save()
+            return Response(serial.data)
+        #return JsonResponse(serial.data, safe=False)
+        # avadika JsonResponse @ izay le izy rehefa vita teste
+        # ka ampifandraisina @ le front de fafana
+        # le Response eo ambany
+        return Response(serial.errors)
+
+@api_view(['GET', 'PUT'])
+#@permission_classes((IsAuthenticated, ))
+def single_horaireclasse(request, pk):
+    try:
+        horaireclasse = HoraireClasse.objects.get(id=pk)
+        # eto le misy diso n an aro f adinony namadika an le
+        # zvtr eto ambony ito ho serializer alohan'ny manao
+        # return @ le methode get
+        if request.method == "GET":
+            #return JsonResponse(role.data, safe=False)
+            # avadika JsonResponse @ izay le izy rehefa vita teste
+            # ka ampifandraisina @ le front de fafana
+            # le Response eo ambany
+            return Response(HoraireClasseSerializer(horaireclasse).data)
+        elif request.method == "PUT":
+            serial = HoraireClasseSerializer(instance=horaireclasse, data=request.data)
+            if serial.is_valid():
+                serial.save()
+            #return JsonResponse(serial.data, safe=False)
+            # avadika JsonResponse @ izay le izy rehefa vita teste
+            # ka ampifandraisina @ le front de fafana
+            # le Response eo ambany
+            return Response(serial.data)
+        else:
+            horaireclasse.delete()
+            return HttpResponse({'message':"reservation inexistant"}, status=status.HTTP_204_NO_CONTENT)
     except:
         return HttpResponse(status=status.HTTP_404_NOT_FOUND)
 
