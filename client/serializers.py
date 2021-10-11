@@ -1,11 +1,10 @@
-from api.models import *
 from api.serializers import  *
 from rest_framework import serializers
 
 class ClientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Utilisateur
-        fields = ('username','first_name','last_name','CIN','telephone_utilisateur','statut_utilisateur','role')
+        fields = ('id','username','first_name','last_name','CIN','telephone_utilisateur','statut_utilisateur','role')
         extra_kwargs = {'password': {'write_only': True}}
 
 class FindHoraireSerializer(serializers.ModelSerializer):
@@ -33,7 +32,7 @@ class VoitureSerializer(serializers.ModelSerializer):
 class ReservationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reservation
-        fields = ('montant_paye','avance_paye','position_place','utilisateur','horaireclasse','voiture')
+        fields = ('montant_paye','avance_paye','position_place', 'date','utilisateur','horaireclasse','voiture')
 
 '''
 {

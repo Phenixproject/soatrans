@@ -6,21 +6,24 @@ class RoleSerializer(serializers.ModelSerializer):
         model = Role
         fields = ['libelle_role']
 
-class UtilisateurSerializer(serializers.ModelSerializer) :
-    class Meta:
-        model = Utilisateur
-        fields = ('username','first_name','last_name','CIN','telephone_utilisateur','statut_utilisateur','role')
-        extra_kwargs = {'password': {'write_only': True}}
-
-class VoitureSerializer(serializers.ModelSerializer) :
-    class Meta:
-        model = Voiture
-        fields = ('numero_voiture', 'etat_voiture', 'utilisateur')
 
 class ReservationSerializer(serializers.ModelSerializer) :
     class Meta:
         model = Reservation
         fields = ('montant_paye', 'avance_paye', 'position_place', 'utilisateur')
+
+
+class UtilisateurSerializer(serializers.ModelSerializer) :
+    reservation_utilisateur = ReservationSerializer(many=True)
+    class Meta:
+        model = Utilisateur
+        fields = ('id','username','first_name','last_name','CIN','telephone_utilisateur','statut_utilisateur','role', 'reservation_utilisateur')
+        extra_kwargs = {'password': {'write_only': True}}
+
+class VoitureSerializer(serializers.ModelSerializer) :
+    class Meta:
+        model = Voiture
+        fields = ('numero_voiture', 'etat_voiture', 'classe')
 
 class HoraireSerializer(serializers.ModelSerializer):
     class Meta:
@@ -35,7 +38,7 @@ class DestinationSerializer(serializers.ModelSerializer):
 class ClasseVoitureSerializer(serializers.ModelSerializer):
     class Meta:
         model = ClasseVoiture
-        fields = ('classe',)
+        fields = ('id', 'classe',)
 
 class HoraireClasseSerializer(serializers.ModelSerializer):
     class Meta:

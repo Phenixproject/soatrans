@@ -73,6 +73,8 @@ class Reservation(models.Model):
     montant_paye = models.BigIntegerField(blank = False)
     avance_paye = models.BigIntegerField(blank = False)
     position_place = models.CharField(max_length = 100, blank = False)
+    #modification... Nasiana date ilay izy mba ahafahana mi filtrer an'ny olona nanao reservaiton tamina date iray
+    date = models.DateTimeField(auto_now_add = True)
     utilisateur = models.ForeignKey(Utilisateur, related_name="reservation_utilisateur", on_delete=models.CASCADE)
     voiture = models.ForeignKey(Voiture, related_name="reservation_voiture", on_delete=models.CASCADE)
     horaireclasse = models.ForeignKey(Horaire, related_name="reservation_horaireclasse", on_delete=models.CASCADE)

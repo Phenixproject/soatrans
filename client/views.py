@@ -1,5 +1,3 @@
-from django.shortcuts import render
-from api.models import *
 from .serializers import *
 from django.http.response import JsonResponse, HttpResponse
 from django.contrib.auth import authenticate, login
@@ -11,7 +9,7 @@ from rest_framework import status
 @api_view(['GET','POST'])
 def all_client(request):
     if request.method == "GET":
-        clients = Utilisateur.objects.all()
+        clients = Utilisateur.objects.filter(role__libelle_role='clients')
         serials = ClientSerializer(clients, many=True)
         #return JsonResponse(serials.data,safe=False)
         return Response(serials.data)

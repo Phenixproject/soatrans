@@ -7,4 +7,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^api/', include('api.urls')),
     url(r'^client/', include('client.urls')),
+    url(r'^guichet/', include('guichet.urls')),
 ]
