@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^horaires/(?P<pk>[0-9]+)$', views.single_horaire),
     url(r'^destinations/$', views.all_destination),
     url(r'^destinations/(?P<pk>[0-9]+)$', views.single_destination),
+
     url(r'^horaireclasses/$', views.all_horaireclasse),
     url(r'^horaireclasses/(?P<pk>[0-9])$', views.single_horaireclasse),
 
