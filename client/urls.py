@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^classevoitures/$', views.all_classevoiture),
     url(r'^destinations/(?P<pk>[0-9]+)$', views.list_destination),
     url(r'^horaires/(?P<pk>[0-9]+)$', views.list_horaire),
+    url(r'^getreservations/$', views.filter_reservation)
 ]

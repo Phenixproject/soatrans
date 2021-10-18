@@ -82,3 +82,13 @@ def authentification(request):
             return HttpResponse('Mot de passe incorrect', status=status.HTTP_400_BAD_REQUEST)
     except Utilisateur.DoesNotExist:
         return HttpResponse('CIN introuvable', status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+def filter_reservation(request):
+    id = request.data['idhoraire']
+    date = request.data['date']
+
+    if request.method == "POST":
+        reservations = Reservation.objects.filter(horaireclasse = id, date__icontains = date)
+        reservations_serializer = ReservationSerializer(reservations, many=True)
+        return  Response(reservations_serializer.data)

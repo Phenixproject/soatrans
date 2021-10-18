@@ -1,16 +1,12 @@
 from django.http.response import HttpResponse
 from rest_framework import status
-from django.http import JsonResponse
-import guichet.serializers
 from guichet.serializers import *
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-#all_client
-#single_reservation(pk)
-#all_client_reservations
-#all_single_client_reservation(pk)
-#single_client_reservation(pk)
+
+#mila filtrena ireo olona rehetra ao anaty atomobile irey
+
 
 @api_view(['GET','POST'])
 def all_client(request):
@@ -64,27 +60,16 @@ def all_client_reservations(request):
         return HttpResponse({"erreur": "page introuvable"}, status=status.HTTP_404_NOT_FOUND)
 
 
-#@api_view(['GET'])
+    #Liste des clients qui ont reserver
+@api_view(['GET'])
 def all_single_client_reservation(request, pk):
-    try:
-        client_reservations = Reservation.objects.filter(utilisateur__id=pk)
-        if request.method == "GET":
-            serial = ReservationSerializer(client_reservations, many=True)
-            return JsonResponse(serial.data, safe=False)
-            #return Response(serial.data)
-    except Reservation.DoesNotExist:
-        return HttpResponse({'erreur': 'page introuvable'}, status=status.HTTP_404_NOT_FOUND)
-
-def tada(request, pk):
-    try:
-        client_reservations = Reservation.objects.filter(utilisateur__id=pk)
-        if request.method == "GET":
-            serial = ReservationSerializer(client_reservations, many=True)
-            return JsonResponse(serial.data, safe=False)
-            #return Response(serial.data)
-    except Reservation.DoesNotExist:
-        return HttpResponse({'erreur': 'page introuvable'}, status=status.HTTP_404_NOT_FOUND)
-
+    reservations = Reservation.objects.filter(utilisateur__role__libelle_role='clients').filter(utilisateur__id=pk)
+    if request.method == "GET":
+        serials = ReservationSerializer(reservations, many=True)
+        #return JsonResponse(serials.data,safe=False)
+        return Response(serials.data)
+    else:
+        return HttpResponse({"erreur": "page introuvable"}, status=status.HTTP_404_NOT_FOUND)
 
 
 @api_view(['GET','PUT'])
@@ -103,6 +88,19 @@ def single_client_reservation(request, pk):
             return Response(serial.data)
     except Utilisateur.DoesNotExist:
         return HttpResponse({'erreur':'page introuvable'},status=status.HTTP_404_NOT_FOUND)
+
+
+
+#Sivana ho an'ireo reservation hoan'ny hora sy fiara iray
+@api_view(['GET'])
+def all_single_client_reservation(request, pk):
+    reservations = Reservation.objects.filter(utilisateur__role__libelle_role='clients').filter(utilisateur__id=pk)
+    if request.method == "GET":
+        serials = ReservationSerializer(reservations, many=True)
+        #return JsonResponse(serials.data,safe=False)
+        return Response(serials.data)
+    else:
+        return HttpResponse({"erreur": "page introuvable"}, status=status.HTTP_404_NOT_FOUND)
 
 
 

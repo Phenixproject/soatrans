@@ -7,13 +7,13 @@ class RoleSerializer(serializers.ModelSerializer):
         fields = ['libelle_role']
 
 
-class ReservationSerializer(serializers.ModelSerializer) :
+class ReservationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reservation
-        fields = ('montant_paye', 'avance_paye', 'position_place', 'utilisateur')
+        fields = ('montant_paye','avance_paye','position_place', 'date','utilisateur','horaireclasse','voiture')
 
 
-class UtilisateurSerializer(serializers.ModelSerializer) :
+class UtilisateurSerializer(serializers.ModelSerializer):
     reservation_utilisateur = ReservationSerializer(many=True)
     class Meta:
         model = Utilisateur
@@ -43,4 +43,4 @@ class ClasseVoitureSerializer(serializers.ModelSerializer):
 class HoraireClasseSerializer(serializers.ModelSerializer):
     class Meta:
         model = HoraireClasse
-        fields = ('horaire', 'classe', 'destination',)
+        fields = ('id', 'horaire', 'classe', 'destination',)

@@ -7,10 +7,10 @@ class ReservationSerializer(serializers.ModelSerializer):
     utilisateur = ClientSerializer(read_only=True)
     class Meta:
         model = Reservation
-        fields = ['montant_paye',
+        fields = ('montant_paye',
                   'avance_paye',
                   'position_place',
                   'date',
                   'utilisateur',
                   'horaireclasse',
-                  'voiture']
+                  'voiture')
