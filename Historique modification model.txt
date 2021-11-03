@@ -1,1 +1,2 @@
-Mba apetaho nenaranareo avy manao modification 
+1-Modification Class Personnel et Utilisateur
+	-ajout de champ photo pour les 2 classes
