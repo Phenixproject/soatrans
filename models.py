@@ -93,6 +93,7 @@ class Destination(models.Model):
 
 
 class HoraireClasse(models.Model):
+    montant_voyage=models.BigIntegerField(default=0)
     horaire = models.ForeignKey(Horaire, related_name="horaireclasse_horaire", on_delete=models.CASCADE)
     classe = models.ForeignKey(ClasseVoiture, related_name="horaireclasse_classevoiture", on_delete=models.CASCADE)
     destination = models.ForeignKey(Destination, related_name="horaireclasse_destination", on_delete=models.CASCADE)

@@ -1,2 +1,3 @@
 1-Modification Class Personnel et Utilisateur
 	-ajout de champ photo pour les 2 classes
+2-ajout du champ montant_voyage dans Horaire class
