@@ -1,7 +1,8 @@
 import axios from "axios";
 
 export class ServiceCRUD{
-    baseUrl = "http://127.0.0.1:8000/";
+    baseUrlImage = "http://192.168.88.134:8000";
+    baseUrl = "http://192.168.88.134:8000/";
     
     async post(uri,data){
         return await axios.post(this.baseUrl+uri,data).then(

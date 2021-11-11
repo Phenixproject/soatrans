@@ -66,7 +66,7 @@ export class Reservation{
     }
 
     async save(){
-        return await this.service_save.post("api/reservations/",this.getData);
+        return await this.service_save.post("api/reservations/",this.getData());
     }
     async update(){
         return await this.service_save.put("api/reservations/",this.getData(),this.id);
@@ -132,6 +132,7 @@ export class Reservation{
         reservations.map(
             reservation => {
                 let single_reservation = new Reservation(reservation.id,
+                    reservation.montant_paye,
                     reservation.avance_paye,
                     reservation.position_place,
                     reservation.date,

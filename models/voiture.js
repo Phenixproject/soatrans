@@ -41,15 +41,29 @@ export class Voiture{
         return await this.service_save.put("api/voitures/",this.getData(),this.id);
     }
 
+    async getInitReservation(){
+        let reservation = await this.service_save.getSingle("client/initreservation/",this.id);
+        console.log(reservation);
+        return new Reservation(reservation.id,
+            reservation.montant_paye,
+            reservation.avance_paye,
+            reservation.position_place,
+            reservation.date,
+            reservation.horaireclasse,
+            reservation.utilisateur,
+            reservation.voiture);
+    }
+
     async getReservation(){
         let reservations = await this.service_save.getSingle("client/reservations/",this.id);
         let all_reservations = [];
         reservations.map(
             reservation => {
                 let single_reservation = new Reservation(reservation.id,
-                                            reservation.avance_payte,
+                                            reservation.avance_paye,
                                             reservation.position_place,
                                             reservation.date,
+                                            reservation.horaireclasse,
                                             reservation.utilisateur,
                                             reservation.voiture)
                 all_reservations.push(single_reservation);

@@ -101,6 +101,22 @@ export class Client{
         }
     }
 
+    getDataWithPassword(){
+        return {
+            id : this.id,
+            username: this.username,
+            first_name: this.first_name,
+            last_name: this.last_name,
+            CIN: this.CIN,
+            telephone_utilisateur: this.telephone_utilisateur,
+            statut_utilisateur: this.statut_utilisateur,
+            adresse: this.adresse,
+            sexe: this.sexe,
+            photo: this.photo,
+            password: this.password,
+        }
+    }
+
     getFormDataPhoto(){
         let formData = new FormData();
         formData.append('photo',this.photo,this.first_name+"_"+this.last_name+".jpg");
@@ -161,6 +177,16 @@ export class Client{
             }
         )
         return all_customers;
+    }
+
+    static async login(data){
+        console.log(data);
+        return await this.service.post("client/login/",JSON.stringify(data))       
+    }
+
+    static async changePassword(data,pk){
+        console.log(data);
+        return await this.service.put("client/password/",JSON.stringify(data),pk);
     }
 
             //////////effacer la classe///////////////////////////////////////////////////////

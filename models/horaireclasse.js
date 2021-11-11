@@ -76,7 +76,7 @@ export class HoraireClasse{
         let all_horaires = []
         horaires.map(
             horaire => {
-                let single_horaire = new Horaire(horaire.horaire.id,horaire.horaire.heure);
+                let single_horaire = new HoraireClasse(horaire.id,0,horaire.horaire,null,null);
                 all_horaires.push(single_horaire);
             }
         )
@@ -85,11 +85,10 @@ export class HoraireClasse{
             //////////appel methode get pour obtenir un seul classe//////////////
     static async get(pk){
         let horaireclasse = await this.service.getSingle("api/horaireclasses/",pk);
-        console.log(horaireclasse);
-        let horaire = new Horaire(horaireclasse.horaire.id,horaireclasse.horaire.heure);
-        let classevoiture = new ClasseVoiture(horaireclasse.classe.id,horaireclasse.classe.classe);
-        let destination = new Destination(horaireclasse.destination.id,horaireclasse.destination.depart,horaireclasse.destination.arrive);
-        return new HoraireClasse(horaireclasse.id,horaire,classevoiture,destination);
+        let horaire = await Horaire.get(horaireclasse.horaire);
+        let classevoiture = await ClasseVoiture.get(horaireclasse.classe);
+        let destination = await Destination.get(horaireclasse.destination);
+        return new HoraireClasse(horaireclasse.id,horaireclasse.montant_voyage,horaire,classevoiture,destination);
     }
 
             //////////appel methode get pour obtenir tous les classes////////////
