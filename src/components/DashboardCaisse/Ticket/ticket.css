@@ -1,0 +1,47 @@
+*{
+  font-size: 20px;
+}
+
+.p{
+  display: flex;
+}
+.p p{
+  margin-right: 20px;
+}
+.mini-container{
+  width: 300px;
+}
+
+
+.lg-container{
+  width: 300px;
+}
+
+.flex{
+  display: flex;
+  justify-content: space-between;
+}
+
+.md-container{
+  width: 400px;
+}
+
+.reserved{
+  border: 1px inset black;
+  border-radius: 50%;
+}
+
+.principal{
+  border: 1px inset black;
+  margin: 20px;
+  padding: 20px;
+}
+
+.btn{
+  margin-right: 10px;
+}
+
+.vide{
+  width: 30px;
+  height: 30px;
+}

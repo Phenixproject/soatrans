@@ -1,0 +1,127 @@
+.admin.active~.containerTicket {
+    position: absolute;
+    height: calc(100% - 80px);
+    width: calc(100% - 375px);
+    left: 375px;
+    top: 80px;
+    z-index: 0;
+    overflow-y: scroll;
+}
+
+.containerTicket {
+    position: absolute;
+    height: calc(100% - 80px);
+    width: calc(100% - 85px);
+    left: 85px;
+    top: 80px;
+    overflow-y: scroll;
+    .containtTicket{
+        width: 100%;
+        height: auto;
+        margin-top: 150px;
+        display: grid;
+        grid-template-columns: 2fr 2fr;
+        .ticket{
+            width: 400px;
+            height: auto;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #000;
+            padding: 0 30px;
+            .dataHeure{
+                width: 100%;
+                height: auto;
+                margin-top: 120px;
+                text-align: center;
+                margin-bottom: 10px;
+                p{
+                    line-height: 30px;
+                }
+            }
+            .nifStat{
+                p{
+                    font-size: 15px;
+                    line-height: 20px;
+                    span{
+                        font-weight: bold;
+                    }
+                }
+            }
+            .Description {
+                padding: 5px 10px;
+                .p{
+                    width: 100%;
+                    font-size: 15px;
+                    line-height: 20px;
+                    display: flex;
+                    flex-direction: row;
+                    p:first-child{
+                        width: 100px;
+                    }
+                }
+            }
+            .placeReservation{
+                width: 100%;
+                display: grid;
+                grid-template-columns: 2fr 2fr;
+                font-size: 14px;
+                .place{
+                    .row{
+                        margin-top: 10px;
+                        display: grid;
+                        grid-template-rows: 20px 20px 20px 20px 20px;
+                        font-size: 13px;
+                        .col{
+                            text-align: center;
+                            display: grid;
+                            grid-template-columns: 20px 20px 20px 20px;
+                            p.active{
+                                border-radius: 50%;
+                                border: 1px solid #000;
+                            }
+                        }
+                    }
+                }
+                .reservation {
+                    .descript {
+                        padding: 5px 10px;
+                        line-height: 20px;
+                        font-size: 14px;
+                    }
+                }
+            }
+            .citation{
+                font-size: 15px;
+                margin: 30px auto;
+            }
+        }
+        .btnPrint{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            button{
+                width: 300px;
+                padding: 15px 0;
+                border-radius: 20px;
+                outline: none;
+                border: none;
+                cursor: pointer;
+                margin-top: 10px;
+                &:hover{
+                    opacity: 0.8;
+                }
+                &:first-child{
+                    background-color: #F55454;
+                    color: #fff;
+                }
+                &:last-child{
+                    background-color:#efefef;
+                    color: #000;
+                }
+            }
+        }
+    }
+}
+
